@@ -10,6 +10,7 @@ import { ProductFormGroup } from './form.model';
 })
 export class ProductComponent {
     model: Model = new Model();
+    showHeader = true;
     form: ProductFormGroup = new ProductFormGroup();
     getProduct(key: number): Product {
         return this.model.getProduct(key);
@@ -20,6 +21,9 @@ export class ProductComponent {
     newProduct: Product = new Product();
     addProduct(p: Product) {
         this.model.saveProduct(p);
+    }
+    deleteProduct(key: number) {
+        this.model.deleteProduct(key);
     }
     formSubmitted: boolean = false;
     submitForm(form: NgForm) {
