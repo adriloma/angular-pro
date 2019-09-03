@@ -6,15 +6,14 @@ import { Product } from './product/product.model';
     templateUrl: "productTable.component.html"
 })
 export class ProductTableComponent {
-    @Input("model")
-    dataModel: Model;
+    constructor(private model: Model) {}
     getProduct(key: number): Product {
-        return this.dataModel.getProduct(key);
+        return this.model.getProduct(key);
     }
     getProducts(): Product[] {
-        return this.dataModel.getProducts();
+        return this.model.getProducts();
     }
     deleteProduct(key: number) {
-        this.dataModel.deleteProduct(key);
+        this.model.deleteProduct(key);
     }
 }

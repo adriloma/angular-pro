@@ -15,6 +15,13 @@ import { ProductFormComponent } from './productForm.component';
 import { PaToggleView } from './toggleView.component';
 import { PaAddTaxPipe } from './addTax.pipe';
 import { PaCategoryFilterPipe } from './categoryFilter.pipe';
+import { PaDiscountDisplayComponent } from './discountDisplay.component';
+import { PaDiscountEditorComponent } from './discountEditor.component';
+import { DiscountService } from './discount.service';
+import { PaDiscountPipe } from './discount.pipe';
+import { PaDiscountAmountDirective } from './discountAmount.directive';
+import { SimpleDataSource } from './product/datasource.model';
+import { Model } from './product/repository.model';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,11 @@ import { PaCategoryFilterPipe } from './categoryFilter.pipe';
     ProductFormComponent,
     PaToggleView,
     PaAddTaxPipe,
-    PaCategoryFilterPipe
+    PaCategoryFilterPipe,
+    PaDiscountDisplayComponent,
+    PaDiscountEditorComponent,
+    PaDiscountPipe,
+    PaDiscountAmountDirective
   ],
   imports: [
     BrowserModule,
@@ -37,7 +48,7 @@ import { PaCategoryFilterPipe } from './categoryFilter.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DiscountService, SimpleDataSource, Model],
     bootstrap: [ProductComponent]
 })
 export class AppModule { }
