@@ -22,6 +22,8 @@ import { PaDiscountPipe } from './discount.pipe';
 import { PaDiscountAmountDirective } from './discountAmount.directive';
 import { SimpleDataSource } from './product/datasource.model';
 import { Model } from './product/repository.model';
+import { LOG_SERVICE, LogService, LogLevel, LOG_LEVEL } from './log.service';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,19 @@ import { Model } from './product/repository.model';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DiscountService, SimpleDataSource, Model],
+    providers: [DiscountService,
+                SimpleDataSource,
+                Model,
+                {provide: 'debugLevel', useExisting: LOG_LEVEL},
+                {provide: LOG_LEVEL, useValue: LogLevel.ERROR},
+                { provide: LOG_SERVICE,
+                    deps: ['debugLevel'],
+                useFactory: (level: LogLevel) => {
+                    const logger = new LogService();
+                    logger.minimumLevel = level;
+                    return logger;
+                }}
+            ],
     bootstrap: [ProductComponent]
 })
 export class AppModule { }

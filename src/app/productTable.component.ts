@@ -1,9 +1,11 @@
 import { Component, Input, ViewChildren, QueryList } from "@angular/core";
 import { Model } from './product/repository.model';
 import { Product } from './product/product.model';
+import { LogService } from './log.service';
 @Component({
     selector: "paProductTable",
-    templateUrl: "productTable.component.html"
+    templateUrl: "productTable.component.html",
+    providers: [LogService]
 })
 export class ProductTableComponent {
     constructor(private model: Model) {}
